@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  login: "Login"
+  logout: "Logout"
+  back: "Back to Top"
+  home:
+    index:
+      hello: "Hello World!"
+      header: "This is a simple app to integrate Google Calendar with Rails 7."
+      welcome: "Welcome %{name}"
