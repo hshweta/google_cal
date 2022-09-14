@@ -1,6 +1,6 @@
 <%= form_with(model: event) do |form| %>
   <% if event.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
@@ -11,47 +11,41 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :latitude, id: :latitude %>
+  <%= form.hidden_field :longitude, id: :longitude %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.datetime_field :start_date %>
+  <div class="form-group">
+    <%= form.label :venue %>
+    <%= form.text_field :venue, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.datetime_field :end_date %>
+  <div class="form-group">
+    <%= form.label :attendees %>
+    <%= form.text_field :attendees, class: 'form-control'%>
   </div>
 
-  <div>
-    <%= form.label :venue, style: "display: block" %>
-    <%= form.text_field :venue %>
+  <div class="form-group">
+    <%= form.label :start_date %>
+    <%= form.datetime_field :start_date, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :google_event_id, style: "display: block" %>
-    <%= form.text_field :google_event_id %>
+  <div class="form-group">
+    <%= form.label :end_date %>
+    <%= form.datetime_field :end_date, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :attendees, style: "display: block" %>
-    <%= form.text_field :attendees %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+    <%= form.submit class: 'btn btn-block btn-light mt-4 mb-3' %>
   </div>
 <% end %>

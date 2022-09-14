@@ -1,10 +1,15 @@
-<h1>Editing event</h1>
-
-<%= render "form", event: @event %>
-
-<br>
-
-<div>
-  <%= link_to "Show this event", @event %> |
-  <%= link_to "Back to events", events_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card mb-4">
+        <div class="card-header bg-light">
+          <h1 class="text-dark text-center">Editing Event</h1>
+        </div>
+        <div class="card-body">
+          <%= render 'form', event: @event %>
+        </div>
+      </div>
+      <%= link_to 'Back', events_path, class: 'btn btn-secondary mb-4' %>
+    </div>
+  </div>
 </div>

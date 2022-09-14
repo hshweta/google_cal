@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def formatted_datetime(datetime)
+    datetime.strftime('%d %b %Y %H:%M:%S %p')
+   end
+
   def flash_class(level)
     case level
       when :success then "alert alert-success"
