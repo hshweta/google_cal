@@ -28,6 +28,17 @@ GOOGLE_OAUTH_CLIENT_SECRET
 GOOGLE_OAUTH_CALLBACK_URL
 ```
 
+For setting Google Calendar API URLs, set these variables:
+
+```
+GOOGLE_OAUTH_TOKEN_URL=https://accounts.google.com/o/oauth2/token
+GOOGLE_CALENDARLIST_URL=https://www.googleapis.com/calendar/v3/users/me/calendarList
+GOOGLE_EVENTLIST_URL=https://www.googleapis.com/calendar/v3/calendars/calendarId/events
+GOOGLE_EVENT_INSERT_URL=https://www.googleapis.com/calendar/v3/calendars/calendarId/events
+GOOGLE_EVENT_UPDATE_URL=https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+GOOGLE_EVENT_DELETE_URL=https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+```
+
 ## Development Setup
 
 - PostgreSQL(12.11)

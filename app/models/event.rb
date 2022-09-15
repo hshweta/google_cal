@@ -8,13 +8,18 @@ class Event < ApplicationRecord
   scope :todays_events, -> { where("DATE(start_date) = ?", Date.today) }
   scope :by_calendar, -> (calenar_id){ where(google_calendar_id: calenar_id) }
 
+  after_create :create_google_event
+  after_update :update_google_event
+  before_destroy :delete_google_event
+
   def email_attendees
-    return if self.attendees.nil?
+    return if self.attendees.blank?
     attendees.split(", ")
   end
 
   def self.sync_events_from_google(user, calendar_id)
     events = get_events(user, calendar_id)
+    return if events['items'].blank?
     events['items'].each do |e|
       event = find_by_google_event_id(e['id']) || new
       event.user = user

@@ -37,3 +37,4 @@ en:
     index:
       welcome: "Welcome %{name}"
       my_calendar: "My Calendar Today"
+      no_events: "No Events today"
