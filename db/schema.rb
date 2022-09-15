@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_13_130947) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_183246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_130947) do
     t.string "country"
     t.float "latitude"
     t.float "longitude"
+    t.string "google_calendar_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

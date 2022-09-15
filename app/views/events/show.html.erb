@@ -28,19 +28,21 @@
         </div>
       </div>
     </div>
-    <div class="col-md-5">
-      <h3>Event Participents</h3>
-      <ul class="list-group">
-        <% @event.email_attendees.each do |guest| %>
-          <li class="list-group-item">
-            <div class="media">
-              <div class="media-body">
-                <h5 class="mt-0"><%= guest %></h5>
+    <% if @event.email_attendees.present? %>
+      <div class="col-md-5">
+        <h3>Event Participents</h3>
+        <ul class="list-group">
+          <% @event.email_attendees.each do |guest| %>
+            <li class="list-group-item">
+              <div class="media">
+                <div class="media-body">
+                  <h5 class="mt-0"><%= guest %></h5>
+                </div>
               </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </div>

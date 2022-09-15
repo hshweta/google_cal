@@ -1,10 +1,24 @@
 <div class="jumbotron mt-5">
-  <h1 class="display-5"><%= t('.hello') %></h1>
-  <p class="lead"><%= t('.header') %></p>
-  <hr class="my-4">
-
   <% if current_user %>
     <h2><%= t('.welcome', name: current_user.name) %></h2>
+    <%= t('.my_calendar')  %>
+    <hr class="my-4">
+    <ul class="list-unstyled components">
+      <% @calendars['items'].each do |calendar| %>
+        <% if calendar['primary'] %>
+          <li><%= link_to GoogleCalendar::DEFAULT_CALANDER_ID.humanize, events_path(calendar: GoogleCalendar::DEFAULT_CALANDER_ID) %></li>
+        <% else %>
+          <li><%= link_to calendar['summary'], events_path(calendar: calendar['id']) %></li>
+        <% end %>
+        <% if @todays_events[calendar['id']].present? %>
+          <ul>
+            <% @todays_events[calendar['id']].each do |event| %>
+              <li><%= link_to event.title, event_path(event) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    </ul>
   <% else %>
     <%= form_for "Login",
       url: user_google_oauth2_omniauth_authorize_path,

@@ -23,4 +23,40 @@ class User < ApplicationRecord
   def name
     "#{self.first_name} #{self.last_name}"
   end
+
+  # retrieve the access token and refresh if necessary
+  def token
+    refresh! if true #access_token_expired?
+    access_token
+  end
+
+  def events_by_calendar(calenar_id)
+    events.by_calendar(calenar_id)
+  end
+
+  private
+
+  def access_token_expired?
+    expires_at && expires_at < Time.current.to_i
+  end
+
+  def refresh!
+    data = JSON.parse(request_token_from_google.body)
+    update(
+      access_token: data['access_token'],
+      expires_at: Time.now + data['expires_in'].to_i.seconds
+    )
+  end
+
+  def request_token_from_google
+    url = URI(ENV['GOOGLE_OAUTH_TOKEN_URL'])
+    Net::HTTP.post_form(url, self.to_params)
+  end
+
+  def to_params
+    { 'refresh_token' => refresh_token,
+      'client_id'     => ENV['GOOGLE_OAUTH_CLIENT_ID'],
+      'client_secret' => ENV['GOOGLE_OAUTH_CLIENT_SECRET'],
+      'grant_type'    => 'refresh_token'}
+  end
 end

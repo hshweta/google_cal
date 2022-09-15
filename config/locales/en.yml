@@ -35,6 +35,5 @@ en:
   back: "Back to Top"
   home:
     index:
-      hello: "Hello World!"
-      header: "This is a simple app to integrate Google Calendar with Rails 7."
       welcome: "Welcome %{name}"
+      my_calendar: "My Calendar Today"

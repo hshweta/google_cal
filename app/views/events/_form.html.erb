@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :google_calendar_id, value: params[:calendar_id] if params[:calendar_id] %>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <%= form.hidden_field :latitude, id: :latitude %>
   <%= form.hidden_field :longitude, id: :longitude %>

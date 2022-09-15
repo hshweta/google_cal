@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_calendar, only: [:index]
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = current_user.events_by_calendar(@calenar_id)
   end
 
   # GET /events/1 or /events/1.json
@@ -50,7 +51,6 @@ class EventsController < ApplicationController
   # DELETE /events/1 or /events/1.json
   def destroy
     @event.destroy
-
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
@@ -63,8 +63,13 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def set_calendar
+      @calenar_id = params[:calendar] || GoogleCalendar::DEFAULT_CALANDER_ID
+    end
+
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :start_date, :end_date, :venue, :google_event_id, :attendees, :user_id)
+      params.require(:event).permit(:title, :description, :start_date, :end_date, :venue,
+       :google_calendar_id, :google_event_id, :attendees, :user_id)
     end
 end
