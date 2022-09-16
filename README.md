@@ -79,3 +79,9 @@ OR
 ```
 
 Open browser at: [http://localhost:3000](http://localhost:3000).
+
+## Things out of scope / Future enhancements
+
+* Syncing of Google events should be done in paginated way and as background job.
+* Caching
+* Google API test cases pending
